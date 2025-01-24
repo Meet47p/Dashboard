@@ -1,0 +1,19 @@
+:host{
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows:60px 1fr; ;
+}
+app-side-nav{
+    grid-row: 1/3;
+    grid-column: 1/2;
+    border-right: 1px solid black;
+}
+app-pageheader{
+    border-bottom: 1px solid black;
+}
+main{
+    padding: 1rem;
+    width: 100%;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
