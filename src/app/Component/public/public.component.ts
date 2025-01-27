@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Chart,registerables} from 'chart.js'  //must requred for chart implementation
-Chart.register(...registerables)              //must requred for chart implementation
+import {Chart,registerables} from 'chart.js'      //must requred for chart implementation
+Chart.register(...registerables)                  //must requred for chart implementation
 
 
 @Component({
@@ -21,20 +21,11 @@ export class PublicComponent implements OnInit {
       labels: ['January', 'February', 'March'],
       datasets: [
         {
-          label:'sales',  
+          label:'Attendence',  
           data: [10, 12, 30],
-          backgroundColor: 'blue',
+          backgroundColor: ['#3e95cd', '#8e5ea2','#3cba9d'],
+          borderColor: 'black',
           
-        },
-        {
-          label:'prod',
-          data: [10, 20, 23],
-          backgroundColor: 'red',
-        },
-        {
-          label:'exp',
-          data: [10, 20, 30],
-          backgroundColor: 'green',
         },
       ],
       },
@@ -64,7 +55,7 @@ export class PublicComponent implements OnInit {
     };
  
   ngOnInit(): void {
-   this.chart=new Chart('myChart',this.config);
+   this.chart=new Chart('myChart1',this.config);
   }
 
 

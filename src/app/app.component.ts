@@ -7,12 +7,14 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 
 
+
 @Component({
   selector: 'app-root',
-  imports: [ PageheaderComponent, SideNavComponent,CommonModule,DashboardComponent],
+  imports: [ PageheaderComponent, SideNavComponent,CommonModule,RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'dashboard';
+
 }
