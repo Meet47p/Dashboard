@@ -1,20 +1,82 @@
-:host{
+:host {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-
 }
-span{
-    width: 50px;
-    height: 50px;
+.toph {
+    cursor: pointer;
+    color: #000; /* Set the text color */
+    position: relative; /* Needed for positioning the shadow */
+    transition: text-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and movement */
+}
+
+/* Default text shadow */
+.toph {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Initial shadow */
+}
+
+/* Hover effect */
+.toph:hover {
+    text-shadow: 
+        -1px -1px 5px rgba(0, 0, 0, 0.7), /* Left top shadow */
+        1px -1px 5px rgba(0, 0, 0, 0.7), /* Right top shadow */
+        -1px 1px 5px rgba(0, 0, 0, 0.7), /* Left bottom shadow */
+        1px 1px 5px rgba(0, 0, 0, 0.7); /* Right bottom shadow */
+    
+    transform: translateX(4px); /* Move text slightly to the right */
+}
+
+/* Base styles for the span element */
+span {
+    width: 50px; /* Base width */
+    height: 50px; /* Base height */
     display: inline-flex;
     justify-content: center;
-    font-size: 2rem;
+    align-items: center; /* Center items vertically */
+    font-size: 2rem; /* Base font size */
     border-radius: 50%;
-
 }
-span:hover{
+
+/* Hover effect for the span element */
+span:hover {
     cursor: pointer;
     background-color: rgb(239, 237, 237);
+}
+
+/* Media query for tablets and larger screens */
+@media (min-width: 600px) {
+    span {
+        width: 60px; /* Increase width for larger screens */
+        height: 60px; /* Increase height for larger screens */
+        font-size: 2.5rem; /* Increase font size for larger screens */
+    }
+}
+
+/* Media query for desktops */
+@media (min-width: 900px) {
+    :host {
+        padding: 2rem; /* Increase padding for larger screens */
+    }
+
+    span {
+        width: 70px; /* Further increase width for desktops */
+        height: 70px; /* Further increase height for desktops */
+        font-size: 3rem; /* Further increase font size for desktops */
+    }
+}
+
+/* Media query for very small screens (like mobile phones) */
+@media (max-width: 400px) {
+    :host {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start; /* Align items to the start */
+        padding: 0.5rem; /* Reduce padding on small screens */
+    }
+
+    span {
+        width: 40px; /* Decrease width for small screens */
+        height: 40px; /* Decrease height for small screens */
+        font-size: 1.5rem; /* Decrease font size for small screens */
+    }
 }

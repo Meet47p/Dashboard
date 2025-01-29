@@ -17,3 +17,9 @@ main{
     height: calc(100vh - 60px);
     overflow-y: auto;
 }
+
+#dropdown{
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-family: cursive;
+}
