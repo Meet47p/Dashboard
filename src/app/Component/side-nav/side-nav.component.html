@@ -1,66 +1,56 @@
-<h2>
-    Admin
-</h2>
+<h2>Admin</h2>
 <ul>
     <li routerLink="dashboard" (click)="toggleDropdown()">
         <span class="material-symbols-outlined"> account_circle </span>
-            <span>
-                <a href="#" routerLink="/dashboard">Dashboard</a>
-            </span>
+        <span>
+            <a href="#" routerLink="/dashboard">Dashboard</a>
+        </span>
     </li>
         
-    <div>
-        @if (showDropdown) {
-
-            <select (change)="onSelect($event)" id="dropdown"  >
-                <option value="">Select</option>
-                <option value="PieChart" >PieChart</option>
-                <option value="BarChart">BarChart</option>
-                <option value="LineChart">LineChart</option>
-             </select>
-            
-        }
+    <!-- Dropdown Container -->
+    <div class="dropdown-container" *ngIf="showDropdown">
+        <select (change)="onSelect($event)" id="dropdown">
+            <option value="">Select</option>
+            <option value="PieChart">PieChart</option>
+            <option value="BarChart">BarChart</option>
+            <option value="LineChart">LineChart</option>
+        </select>
     </div>
-    @if (pie) {
-        <div>
 
-            <div id="pieh">
-                <p>PieChart:</p>
-            </div>
-            
-            <div class="piei">
-                <input type="text" [(ngModel)]="labels" class="pieinput" placeholder="Enter the labels">
-                <input type="number" [(ngModel)]="dataValue"  class="pieinput" value="Enter the data">
-            </div>
-    
-            <div class="pieb">
-                <button (click)="addData()" id="add">Add Data</button>
-            </div>
+    <!-- Pie Chart Inputs -->
+    <div *ngIf="selectedChart === 'PieChart'" class="chart-inputs">
+        <div class="chart-header">
+            <p>PieChart:</p>
         </div>
-        
-    }
+        <div class="input-group">
+            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels">
+            <input type="number" [(ngModel)]="dataValue" class="input" placeholder="Enter the data">
+        </div>
+        <button (click)="pieData()" class="add-button">Add Data</button>
+    </div>
 
-   
-    @if (bar) {
-        <div>
-            <div id="pieh">
-                <p>BarChart:</p>
-            </div>
-            <div class="piei">
-                <input type="text" [(ngModel)]="labels" class="pieinput" placeholder="Enter the label">
-                <input type="number" [(ngModel)]="salesValue" class="pieinput" placeholder="Enter sales data">
-                <input type="number" [(ngModel)]="prodValue" class="pieinput" placeholder="Enter production data">
-            </div>
-            <div class="pieb">
-                <button (click)="addData1()" id="add">Add Data</button>
-            </div>
+    <!-- Bar Chart Inputs -->
+    <div *ngIf="selectedChart === 'BarChart'" class="chart-inputs">
+        <div class="chart-header">
+            <p>BarChart:</p>
         </div>
-    }
-    
-    
-    
-    
-    
+        <div class="input-group">
+            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels">
+            <input type="number" [(ngModel)]="salesValue" class="input" placeholder="Enter sales value">
+            <input type="number" [(ngModel)]="prodValue" class="input" placeholder="Enter product value">
+        </div>
+        <button (click)="BarData()" class="add-button">Add Data</button>
+    </div>
+
+    <!-- Line Chart Inputs -->
+    <div *ngIf="selectedChart === 'LineChart'" class="chart-inputs">
+        <div class="chart-header">
+            <p>LineChart:</p>
+        </div>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels">
+            <input type="number" [(ngModel)]="newdata" class="input" placeholder="Enter new data">
+        </div>
+        <button (click)="lineData()" class="add-button">Add Data</button>
+    </div>
 </ul>
-
-

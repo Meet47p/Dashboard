@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart,registerables} from 'chart.js'
+import { LinechartdataService } from './Service/linechartdata.service';
 Chart.register(...registerables)
 @Component({
   selector: 'app-thirdc',
@@ -8,26 +9,36 @@ Chart.register(...registerables)
   styleUrl: './thirdc.component.css'
 })
 export class ThirdcComponent implements OnInit {
-  chart:any;
+  chart: any;
+  config1: any;
 
-  public config:any={
-    type:'line',
-   
-    data:{
-      labels:'line',
+  constructor(private linechartdataService: LinechartdataService) {} // Inject the service
 
-      datasets:[{
-        label:'my first dataset',
-        data:[10,0,16,10,26,14],
-        borderColor:'black',
-      }]
+  ngOnInit(): void {
+    // Subscribe to the linechartData observable
+    this.linechartdataService.linechartData$.subscribe((linedata: { labels: string[]; data: number[]; }) => {
+      this.config1 = {
+        type: 'line',
+        data: {
+          labels: linedata.labels,
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: linedata.data,
+              borderColor: 'black',
+              fill: false, // Optional: Set to true if you want the area under the line to be filled
+            },
+          ],
+        },
+      };
+      this.updateChart(); // Update the chart with new data
+    });
+  }
 
+  updateChart() {
+    if (this.chart) {
+      this.chart.destroy(); // Destroy the previous chart instance to avoid memory leaks
     }
-
-  };
-
-  ngOnInit(): void {   
-    this.chart=new Chart('myChart2',this.config);
-   }
-
+    this.chart = new Chart('myChart2', this.config1); // Create a new chart instance
+  }
 }

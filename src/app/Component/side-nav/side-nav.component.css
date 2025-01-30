@@ -1,85 +1,129 @@
-:host{
+:host {
     display: block;
     width: 250px;
     height: 100%;
     padding: 0.5rem;
     overflow: hidden;
+    background-color: #f9f9f9; /* Light background for the sidebar */
+    border-right: 1px solid #e0e0e0; /* Subtle border */
 }
-h2{
-    width: 200px;
+
+h2 {
+    width: 100%;
     text-align: center;
     margin: 0.5rem auto 1rem;
     border-radius: 10px;
     padding: 0.5rem;
-    box-shadow: 5px 5px 7px rgb(239, 237, 237),-5px -5px 7px rgb(239, 237, 237);
-
+    box-shadow: 5px 5px 7px rgba(239, 237, 237, 0.5), -5px -5px 7px rgba(239, 237, 237, 0.5);
+    background-color: #ffffff; /* White background for the header */
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
-h2:hover{
+h2:hover {
     cursor: pointer;
-    background-color: rgb(239, 237, 237);
+    background-color: rgba(239, 237, 237, 0.8); /* Slightly darker on hover */
 }
-ul{
-    li{
-        border: 1px solid black;
-        padding: 0.5rem;
-        border-radius: 5px;
-        margin-bottom: 0.5rem;
-        display: flex;
-        gap: 0.5rem;
-    }
+
+ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
 }
-li:hover{
+
+li {
+    border: 1px solid #ccc; /* Light border */
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 0.5rem;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+li:hover {
     cursor: pointer;
-    background-color: rgb(239, 237, 237);
+    background-color: rgba(239, 237, 237, 0.8); /* Highlight on hover */
 }
-a{
-    text-decoration: none;
+
+a {
+ text-decoration: none;
+    color: #333; /* Dark text color for links */
 }
-#dropdown{
+
+.dropdown-container {
+    margin: 1rem 0; /* Margin for spacing */
+}
+
+#dropdown {
     padding: 0.5rem;
     border-radius: 10px;
     font-family: cursive;
-    position: absolute;
-    left: 29px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-#dropdown:hover{
-    cursor: pointer;
-    background-color: rgb(239, 237, 237);
-}
-#pie{
-    display: flex;
-    position: relative;
-    top: 171px;
-}
-#add{
-   
-    position: relative;
-    top: 12px;
-    right: -41px;
-    border-radius: 10px;
+    width: 100%; /* Full width for dropdown */
+    border: 1px solid #ccc; /* Light border */
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
-.piei{
-    position: relative;
-    top: 206px;
-    left: 10px;
+#dropdown:hover {
+    cursor: pointer;
+    background-color: rgba(239, 237, 237, 0.8); /* Highlight on hover */
 }
-.pieb{
-    position: relative;
-    top: 206px;
-    left: 18px;
+
+.chart-inputs {
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    margin-top: 1rem; /* Space above chart inputs */
 }
-#pieh{
-    position: relative;
-    top: 198px;
-    left: 57px;
+
+.chart-header {
+    margin-bottom: 0.5rem; /* Space below header */
+    font-weight: bold; /* Bold text for headers */
 }
-.pieinput{
+
+.input-group {
+    display: flex; /* Flexbox for input alignment */
+    gap: 0.5rem; /* Space between inputs */
+}
+
+.input {
     border-radius: 10px;
-    width: 200px;
+    width: 100%; /* Full width for inputs */
     height: 31px;
+    margin: 3px 0; /* Vertical margin */
+    text-align: center;
+    border: 1px solid #ccc; /* Light border */
+    transition: border-color 0.3s ease; /* Smooth transition */
+}
+
+.input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.add-button {
+    border-radius: 7px;
+    padding: 7px;
+    background-color: #007bff; /* Primary button color */
+    color: white; /* White text for button */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.add-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    :host {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Adjust font size */
+    }
+
+    .input {
+        width: calc(100% - 10px); /* Adjust width for inputs */
+    }
 }

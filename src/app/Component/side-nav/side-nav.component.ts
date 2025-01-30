@@ -3,74 +3,73 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PiechartdataService } from '../../Services/piechartdata.service';
 import { BarchartdataService } from '../../Component/latest/Services/barchartdata.service';
+import { LinechartdataService } from '../../Component/thirdc/Service/linechartdata.service';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-side-nav',
-  imports: [RouterLink,FormsModule],
+  imports: [RouterLink, FormsModule,CommonModule],
   templateUrl: './side-nav.component.html',
-  styleUrl: './side-nav.component.css'
+  styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent {
+  barchartdataService = inject(BarchartdataService);
+  linechartdataService = inject(LinechartdataService);
+  piechartdataService = inject(PiechartdataService);
 
   labels: string = '';
-  dataValue: number = 0; // To hold the data value for the pie chart
-  barchartdataService!: any; ;
-
-  constructor(private piechartdataService: PiechartdataService,barchartdataService: BarchartdataService) {}
+  dataValue!: number;
   salesValue: number | null = null;
   prodValue: number | null = null;
+  newdata!: number;
 
-  addData1() {
-    debugger;
+  selectedChart: string = '';     // Variable to track the selected chart type
+  showDropdown: boolean = false; // Control dropdown visibility
+  BarData() {
     if (this.labels && this.salesValue !== null && this.prodValue !== null) {
-      debugger;
       this.barchartdataService.UpdateChartData(this.labels, this.salesValue, this.prodValue);
-      debugger;
-      // Clear input fields after adding data
-      this.labels = '';
+      this.labels = ''; // Clear the labels after adding data
       this.salesValue = null;
       this.prodValue = null;
-      debugger;
     }
   }
- 
 
+  lineData() {
+    if (this.labels && this.newdata) {
+      this.linechartdataService.UpdateChartData(this.labels, this.newdata);
+      this.labels = '';
+      this.newdata = 0;
+    }
+  }
 
+  pieData() {
+    if (this.labels && this.dataValue) {
+      this.piechartdataService.updateChartData(this.labels, this.dataValue);
+      this.labels = '';  
+      this.dataValue = 0;
+    }
+  }
 
-  router=inject(Router)
+  router = inject(Router);
+
   onSelect(event: Event) {
     const selectedValue = (event.target as HTMLSelectElement).value;
-    
-    if(selectedValue == "PieChart"){
+    this.selectedChart = selectedValue; // Update the selected chart type
+
+    // Navigate to the corresponding route
+    if (selectedValue === "PieChart") {
       this.router.navigateByUrl('/public');
-      alert("PieChart");
-      this.pie=true;
-    }
-    else if(selectedValue == "BarChart"){
+    } else if (selectedValue === "BarChart") {
       this.router.navigateByUrl('/latest');
-      alert("BarChart");
-      this.bar=true;
-    }
-    else if(selectedValue == "LineChart"){
+    } else if (selectedValue === "LineChart") {
       this.router.navigateByUrl('/thirdc');
-      alert("LineChart");
     }
-    
-}
-showDropdown: boolean = false;
-pie:boolean=false;
-bar:boolean=false;
-line:boolean=false;
-toggleDropdown() {
-  this.showDropdown=true;         // Toggle dropdown visibility
-}
-
-addData() {
-  if (this.labels && this.dataValue) {
-    this.piechartdataService.updateChartData(this.labels, this.dataValue);
-    this.labels = '';         // Clear input after adding
-    this.dataValue = 0;       // Reset data value
   }
-}
 
+  
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown; // Toggle dropdown visibility
+  }
 
 }

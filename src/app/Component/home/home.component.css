@@ -1,0 +1,45 @@
+.dashboard-container {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #f4f4f4, #e0e0e0); /* Gradient background */
+    text-align: center; /* Center text alignment */
+}
+
+.welcome-text {
+    font-size: 2.5rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    background: linear-gradient(90deg, #007bff, #00bfff); /* Gradient text color */
+   
+    color: black; /* Make text transparent to show gradient */
+    padding: 20px; /* Padding around the text */
+    border: 2px solid transparent; /* Transparent border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.welcome-text:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-color: #007bff; /* Add border color on hover */
+}
+
+/* Animation for the text */
+@keyframes glow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.welcome-text {
+    animation: glow 3s infinite alternate; /* Apply glow animation */
+}

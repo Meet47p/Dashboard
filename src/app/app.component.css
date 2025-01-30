@@ -2,24 +2,34 @@
     display: grid;
     grid-template-columns: 250px 1fr;
     grid-template-rows:60px 1fr; ;
+    background-color: #f4f4f4;
 }
 app-side-nav{
     grid-row: 1/3;
     grid-column: 1/2;
-    border-right: 1px solid black;
+    border-right: 1px solid black; /* Light border for separation */
+    background-color: #ffffff; /* White background for sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+app-side-nav:hover {
+    background-color:#f9f9f9; /* Slightly darker on hover */
 }
 app-pageheader{
     border-bottom: 1px solid black;
+    background-color: #ffffff; /* White background for header */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    padding: 0 1rem; /* Horizontal padding */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 main{
     padding: 1rem;
     width: 100%;
     height: calc(100vh - 60px);
     overflow-y: auto;
+    background-color: #ffffff; /* White background for main content */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    border-radius: 10px; /* Rounded corners */
 }
 
-#dropdown{
-    padding: 0.5rem;
-    border-radius: 10px;
-    font-family: cursive;
-}
