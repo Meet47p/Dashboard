@@ -13,6 +13,17 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent {
+  displayname!:string;
+
+constructor(){
+  const username = sessionStorage.getItem('username');
+  this.displayname=username!;
+}
+  
+
+
+
+  
   barchartdataService = inject(BarchartdataService);
   linechartdataService = inject(LinechartdataService);
   piechartdataService = inject(PiechartdataService);
@@ -55,14 +66,16 @@ export class SideNavComponent {
   onSelect(event: Event) {
     const selectedValue = (event.target as HTMLSelectElement).value;
     this.selectedChart = selectedValue; // Update the selected chart type
-
+debugger;
     // Navigate to the corresponding route
     if (selectedValue === "PieChart") {
-      this.router.navigateByUrl('/public');
+      debugger;
+      this.router.navigateByUrl('/random/public');
+      debugger;
     } else if (selectedValue === "BarChart") {
-      this.router.navigateByUrl('/latest');
+      this.router.navigateByUrl('/random/latest');
     } else if (selectedValue === "LineChart") {
-      this.router.navigateByUrl('/thirdc');
+      this.router.navigateByUrl('/random/thirdc');
     }
   }
 

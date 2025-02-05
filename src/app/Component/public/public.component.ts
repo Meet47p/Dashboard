@@ -32,26 +32,15 @@ export class PublicComponent implements OnInit {
         },
         options: {
           aspectRatio: 1,
-          scales: {
-            x: {
-              grid: {
-                display: false,
-              },
-              title: {
-                display: true,
-                text: 'Months',
-              },
+          plugins: {
+            legend: {
+              display: true, // Show legend if needed
             },
-            y: {
-              grid: {
-                display: false,
-              },
-              title: {
-                display: true,
-                text: 'Sales (in units)',
-              },
+            tooltip: {
+              enabled: true, // Enable tooltips if needed
             },
           },
+          // No scales property needed for pie charts
         },
       };
       this.updateChart();
@@ -65,5 +54,3 @@ export class PublicComponent implements OnInit {
     this.chart = new Chart('myChart1', this.config); // Create a new chart instance
   }
 }
-
-

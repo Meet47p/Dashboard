@@ -30,6 +30,16 @@ export class ThirdcComponent implements OnInit {
             },
           ],
         },
+        options: {
+          scales: {
+            x: {
+              display: true, // Hide the x-axis
+            },
+            y: {
+              display: false, // Hide the y-axis
+            },
+          },
+        },
       };
       this.updateChart(); // Update the chart with new data
     });

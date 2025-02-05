@@ -7,26 +7,110 @@
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradient background */
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 1.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out, floating 5s infinite alternate ease-in-out;
 }
 
+/* Floating Animation (Chart Moves Up & Down) */
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Hover Effects */
 .chart-container:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: breathing 2s infinite alternate;
 }
 
-canvas {
-    width: 100%; /* Make the canvas responsive */
-    height: 100%; /* Make the canvas responsive */
-    border-radius: 10px; /* Rounded corners for the canvas */
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+/* Breathing Animation */
+@keyframes breathing {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.03);
+    }
 }
 
-/* Animation for the chart container */
+/* Ripple Effect on Click */
+.chart-container:active::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Shimmer Effect */
+.chart-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 150%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Wave Animation (Subtle Flowing Effect) */
+.chart-container::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 60%);
+    opacity: 0.3;
+    animation: wave 6s infinite linear;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Fade-in Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -38,15 +122,20 @@ canvas {
     }
 }
 
-.chart-container {
-    animation: fadeIn 0.8s ease-out; /* Apply fade-in animation */
+/* Canvas Styling */
+canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design for smaller screens */
+/* Responsive Design */
 @media (max-width: 768px) {
     .chart-container {
-        width: 90%; /* Increase width on smaller screens */
-        height: auto; /* Adjust height for smaller screens */
-        padding: 15px; /* Adjust padding */
+        width: 90%;
+        height: auto;
+        padding: 15px;
     }
 }

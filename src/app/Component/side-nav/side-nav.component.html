@@ -1,4 +1,4 @@
-<h2>Admin</h2>
+<h2>{{displayname}}</h2>
 <ul>
     <li routerLink="dashboard" (click)="toggleDropdown()">
         <span class="material-symbols-outlined"> account_circle </span>
@@ -23,8 +23,8 @@
             <p>PieChart:</p>
         </div>
         <div class="input-group">
-            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels">
-            <input type="number" [(ngModel)]="dataValue" class="input" placeholder="Enter the data">
+            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels" required>
+            <input type="number" [(ngModel)]="dataValue" class="input" placeholder="Enter the data" required>
         </div>
         <button (click)="pieData()" class="add-button">Add Data</button>
     </div>
@@ -35,9 +35,9 @@
             <p>BarChart:</p>
         </div>
         <div class="input-group">
-            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels">
-            <input type="number" [(ngModel)]="salesValue" class="input" placeholder="Enter sales value">
-            <input type="number" [(ngModel)]="prodValue" class="input" placeholder="Enter product value">
+            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels" required>
+            <input type="number" [(ngModel)]="salesValue" class="input" placeholder="Enter sales value" required>
+            <input type="number" [(ngModel)]="prodValue" class="input" placeholder="Enter product value" required>
         </div>
         <button (click)="BarData()" class="add-button">Add Data</button>
     </div>
@@ -48,9 +48,10 @@
             <p>LineChart:</p>
         </div>
         <div class="input-group">
-            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels">
-            <input type="number" [(ngModel)]="newdata" class="input" placeholder="Enter new data">
+            <input type="text" [(ngModel)]="labels" class="input" placeholder="Enter the labels" required>
+            <input type="number" [(ngModel)]="newdata" class="input" placeholder="Enter new data" required>
         </div>
         <button (click)="lineData()" class="add-button">Add Data</button>
     </div>
+    
 </ul>

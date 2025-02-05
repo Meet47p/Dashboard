@@ -9,23 +9,68 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease; /* Smooth hover effect */
+    position: relative;
+    overflow: hidden; /* Needed for ripple effect */
+}
+
+/* Hover Effects */
+.chart-container:hover {
+    transform: translateY(-5px) scale(1.03); /* Slight lift and scale */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Slightly change gradient */
+}
+
+/* Ripple Effect on Click */
+.chart-container:active::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Glowing Effect */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+    }
 }
 
 .chart-container:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    animation: glow 1.5s infinite alternate;
 }
 
+/* Canvas Styling */
 canvas {
-    max-width: 100%; /* Ensure canvas is responsive */
+    max-width: 100%;
     height: auto;
-    border-radius: 10px; /* Rounded corners for the canvas */
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Animation for the chart container */
+/* Fade-in Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -38,14 +83,14 @@ canvas {
 }
 
 .chart-container {
-    animation: fadeIn 0.8s ease-out; /* Apply fade-in animation */
+    animation: fadeIn 0.8s ease-out;
 }
 
-/* Responsive design for smaller screens */
+/* Responsive Design */
 @media (max-width: 768px) {
     .chart-container {
-        width: 90%; /* Increase width on smaller screens */
-        height: auto; /* Adjust height for smaller screens */
+        width: 90%;
+        height: auto;
         padding: 15px;
     }
 }
